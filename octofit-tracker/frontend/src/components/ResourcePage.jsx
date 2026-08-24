@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
-export default function ResourcePage({ resource, title, description, renderItem }) {
+export default function ResourcePage({ resource, title, description, endpoint, renderItem }) {
   const [items, setItems] = useState([])
   const [state, setState] = useState('loading')
   const [error, setError] = useState('')
 
   useEffect(() => {
     let active = true
-    fetchCollection(resource).then((data) => {
+    fetchCollection(resource, endpoint).then((data) => {
       if (active) { setItems(data); setState('ready') }
     }).catch((requestError) => {
       if (active) { setError(requestError.message); setState('error') }
     })
     return () => { active = false }
-  }, [resource])
+  }, [resource, endpoint])
 
   return (
     <section>
