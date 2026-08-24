@@ -1,5 +1,15 @@
 # React + Vite
 
+## API configuration
+
+Define `VITE_CODESPACE_NAME` in `.env.local` when running the frontend in GitHub Codespaces:
+
+```text
+VITE_CODESPACE_NAME=your-codespace-name
+```
+
+The frontend uses `https://$VITE_CODESPACE_NAME-8000.app.github.dev/api` when set and falls back to `http://localhost:8000/api` when it is unset.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
